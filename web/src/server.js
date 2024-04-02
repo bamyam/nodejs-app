@@ -1,6 +1,8 @@
 // express, mustache 라이브러리 초기화
 const express = require('express');
 const mustacheExpress = require('mustache-express');
+const promBundle = require('express-prom-bundle');
+const metricsMiddleware = promBundle({includeMethod: true, includePath: true});
 
 // postgres 라이브러리 초기화
 const { Pool } = require('pg');

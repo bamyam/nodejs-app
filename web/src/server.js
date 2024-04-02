@@ -9,6 +9,7 @@ const { Pool } = require('pg');
 const os = require('os');
 
 const app = express();
+app.use(metricsMiddleware);
 app.use(express.static('public'));      // css, js 경로 지정
 app.set('view engine', 'html');         // 뷰 엔진 설정
 app.engine('html', mustacheExpress());  // html 파일 처리기 등록

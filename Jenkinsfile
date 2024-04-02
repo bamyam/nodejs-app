@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage{'pre cleanup') {
+        stage('pre cleanup') {
             steps {
                 sh 'docker compose down -v'
             }

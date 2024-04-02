@@ -27,7 +27,7 @@ services:
     image: bamyam/webapp
     build: web
     ports:
-    - 3000:3000
+    - 3001:3001
     environment:
     - DB_HOST=db
     depends_on:

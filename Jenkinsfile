@@ -1,22 +1,28 @@
 pipeline {
-    agent any
+    agent { label 'agent'}
 
     stages {
-        stage('pre cleanup') {
-            steps {
-                sh 'docker compose down -v'
-            }
-        }
         stage('git scm update') {
             steps {
                 git url: 'https://github.com/bamyam/nodejs-app.git', branch: 'main'
             }
         }
-        stage('docker build and push') {
+        stage('docker compose build') {
             steps {
-                sh'''
-                docker compose up --build -d
+                sh 'IMAGE_NAME=bamyam/nodejsapp docker compose build '
+            }
+        }
+        stage('docker hub push') {
+            steps {
+                sh '''
+                    docker login -u bamyam -p Ba@8893389
+                    docker push bamyam/nodejsapp
                 '''
+            }
+        }
+        stage('microk8s run pod') {
+            steps {
+                sh 'microk8s kubectl run app1 --image=bamyam/nodejsapp'
             }
         }
     }

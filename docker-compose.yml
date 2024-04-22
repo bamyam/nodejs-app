@@ -24,12 +24,13 @@ services:
     - pgadmin-data:/var/lib/pgadmin
 
   web:
-    image: bamyam/webapp
+    image: "${IMAGE_NAME}"
     build: web
     ports:
     - 3001:3001
     environment:
     - DB_HOST=db
+      IMAGE_NAME=bamyam/webapp
     depends_on:
     - db
 

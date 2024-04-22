@@ -9,7 +9,7 @@ pipeline {
         }
         stage('docker compose build') {
             steps {
-                sh 'IMAGE_NAME=bamyam/nodejsapp docker compose build '
+                sh 'IMAGE_NAME=bamyam/nodejsapp sudo docker compose build '
             }
         }
         stage('docker hub push') {

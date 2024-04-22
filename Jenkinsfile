@@ -15,8 +15,8 @@ pipeline {
         stage('docker hub push') {
             steps {
                 sh '''
-                    docker login -u bamyam -p Ba@8893389
-                    docker push bamyam/nodejsapp
+                    sudo docker login -u bamyam -p Ba@8893389
+                    sudo docker push bamyam/nodejsapp
                 '''
             }
         }
